@@ -1,85 +1,89 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+<template>
+  <RouterView></RouterView>
+</template>
+
+
+<!-- <script setup lang="ts">
+import { ref } from 'vue';
+import type { randomObjectType } from './app';
+
+
+const dataRef = ref<number>(1);
+
+const randomObject = ref<randomObjectType>({name:"teszt",age:10})
+
+type UserType = {
+  name: string,
+  email: string,
+  password: string
+}
+
+const userRef = ref<UserType>({
+  name:"",
+  email:"",
+  password:"",
+});
+
+const usersRef = ref<UserType[]>([{
+  name:"teszt elek",
+  email:"tesztelek@gmail.com",
+  password:"demo1234"
+},
+{
+  name:"teszt elek",
+  email:"tesztelek@gmail.com",
+  password:"demo1234"
+}]);
+
+const name = ref<string>();
+
+console.log(dataRef.value);
+console.log(randomObject.value.name);
 </script>
 
+
+
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <h1>Hello {{ dataRef }}</h1>
+  <v-text-field label="Name" v-model="userRef.name"></v-text-field>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+  <v-text-field label="Email" v-model="userRef.email"></v-text-field>
+  <v-text-field label="Password" v-model="userRef.password"></v-text-field>
+  {{ userRef }}
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
+  <v-table>
+    <thead>
+      <tr>
+        <th class="text-left">
+          Name
+        </th>
+        <th class="text-left">
+          email
+        </th>
+        <th class="text-left">
+          password
+        </th>
+      </tr>
+    </thead>
+    <tbody     
+        v-for="({name,email,password},index) in usersRef"
+        :key="index">
+      <tr
+        v-if="(index == 1)"
+      >
+      
+        <td>{{ name }}</td>
+        <td>{{ email }}</td>
+        <td>{{ password }}</td>
+      
+      </tr>
+    </tbody>
+  </v-table>
 
-  <RouterView />
+
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
+</style> -->
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
-</style>
